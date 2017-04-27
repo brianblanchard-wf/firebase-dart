@@ -41,7 +41,7 @@ class Messaging extends JsObjectWrapper<messaging_interop.MessagingJsImpl> {
     return _onMessageController.stream;
   }
 
-  Stream onTokenRefresh() {
+  Stream get onTokenRefresh {
     if (_onTokenRefreshController == null) {
       var nextWrapper = allowInterop(() => _onTokenRefreshController.add(null));
 
