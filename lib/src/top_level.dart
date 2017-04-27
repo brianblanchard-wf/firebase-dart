@@ -3,6 +3,7 @@ import 'auth.dart';
 import 'database.dart';
 import 'interop/firebase_interop.dart' as firebase;
 import 'storage.dart';
+import 'messaging.dart';
 
 export 'interop/firebase_interop.dart' show SDK_VERSION;
 
@@ -23,6 +24,7 @@ App initializeApp(
     String authDomain,
     String databaseURL,
     String storageBucket,
+    String messagingSenderId,
     String name}) {
   name ??= _defaultAppName;
 
@@ -31,7 +33,8 @@ App initializeApp(
           apiKey: apiKey,
           authDomain: authDomain,
           databaseURL: databaseURL,
-          storageBucket: storageBucket),
+          storageBucket: storageBucket,
+          messagingSenderId: messagingSenderId),
       name));
 }
 
@@ -111,4 +114,18 @@ Storage storage([App app]) {
     _storage = new Storage.fromJsObject(jsObject);
   }
   return _storage;
+}
+
+Messaging _messaging;
+
+Messaging messaging() {
+  var jsObject = firebase.messaging();
+
+  if (_messaging != null) {
+    _messaging.jsObject = jsObject;
+  } else {
+    _messaging = new Messaging.fromJsObject(jsObject);
+  }
+
+  return _messaging;
 }

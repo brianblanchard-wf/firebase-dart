@@ -11,7 +11,7 @@ main() {
     throw new StateError("Not in the root! - ${Directory.current}");
   }
 
-  var samplePath = p.join(_assetPath, 'config.json.sample');
+  var samplePath = p.join(_assetPath, 'config.json');
   if (!(new File(samplePath).existsSync())) {
     throw new StateError("'$samplePath should exist");
   }

@@ -8,6 +8,7 @@ import 'app_interop.dart';
 import 'auth_interop.dart';
 import 'database_interop.dart';
 import 'storage_interop.dart';
+import 'messaging_interop.dart';
 
 external List<AppJsImpl> get apps;
 
@@ -21,6 +22,7 @@ external AppJsImpl app([String name]);
 external AuthJsImpl auth([AppJsImpl app]);
 external DatabaseJsImpl database([AppJsImpl app]);
 external StorageJsImpl storage([AppJsImpl app]);
+external MessagingJsImpl messaging();
 
 @JS('User')
 abstract class UserJsImpl extends UserInfoJsImpl {
@@ -123,10 +125,13 @@ class FirebaseOptions {
   external void set databaseURL(String s);
   external String get storageBucket;
   external void set storageBucket(String s);
+  external String get messagingSenderId;
+  external void set messagingSenderId(String s);
 
   external factory FirebaseOptions(
       {String apiKey,
       String authDomain,
       String databaseURL,
-      String storageBucket});
+      String storageBucket,
+      String messagingSenderId});
 }
